@@ -3,10 +3,7 @@ package com.xpy.web;
 import com.xpy.Service.BookService;
 import com.xpy.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +17,7 @@ public class BookController {
 
     private List<Book> bookList;
 
+    //get all the book records
     @RequestMapping(value="/books", method=RequestMethod.GET)
     public List<Book> getBooks(){
 
@@ -29,6 +27,7 @@ public class BookController {
         return bookList;
     }
 
+    //create book record
     @RequestMapping(value="/books", method=RequestMethod.POST)
     public Book saveBook(@RequestParam String name,
                          @RequestParam String description,
@@ -51,9 +50,17 @@ public class BookController {
     }
 
 
+    //get one book record
+    @RequestMapping(value="/books/{id}", method=RequestMethod.GET)
+    public Book getOneBook(@PathVariable Long id){
+        Book book=bookService.getOne(id);
 
-    @RequestMapping(value="/books", method=RequestMethod.DELETE)
-    public Book deleteBook(@RequestParam String name,
+        return book;
+    }
+
+
+    @RequestMapping(value="/books", method=RequestMethod.PUT)
+    public Book updateBook(@RequestParam String name,
                            @RequestParam String description,
                            @RequestParam String author,
                            @RequestParam String isbn,
@@ -71,5 +78,17 @@ public class BookController {
         newBook=bookService.save(newBook);
 
         return newBook;
+    }
+
+
+    //delete a book record
+    @RequestMapping(value="/books/{id}", method=RequestMethod.DELETE)
+    public void deleteBook(@PathVariable Long id){
+
+
+
+        bookService.delete(id);
+
+
     }
 }

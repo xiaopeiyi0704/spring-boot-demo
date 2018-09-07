@@ -30,4 +30,17 @@ public class BookService {
         return newBook;
     }
 
+    public Book getOne(long id){
+
+        return bookRepository.findById(id).get();
+
+    }
+
+
+    public void delete (long id){
+
+        bookRepository.deleteById(id);
+    }
+
+
 }

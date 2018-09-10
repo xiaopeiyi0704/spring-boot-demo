@@ -42,5 +42,23 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
+    public List<Book> findByAuthorAndStatus(String author, int status){
+        return bookRepository.findByAuthorAndStatus(author,status);
 
+    }
+
+    public List<Book> findByAuthorAndStatus(int len){
+        return bookRepository.findBookByNameLength(len);
+
+    }
+
+    public List<Book> findByAuthorAndStatus2(int len){
+        return bookRepository.findBookByNameLength2(len);
+
+    }
+
+
+    public int updateByJPQL(String author, int status){
+        return bookRepository.updateByJPQL(author, status);
+    }
 }

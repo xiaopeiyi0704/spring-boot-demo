@@ -27,7 +27,7 @@ public class BookController {
         return bookList;
     }
 
-    //create book record
+    /*//create book record
     @RequestMapping(value="/books", method=RequestMethod.POST)
     public Book saveBook(@RequestParam String name,
                          @RequestParam String description,
@@ -47,7 +47,7 @@ public class BookController {
         newBook=bookService.save(newBook);
 
         return newBook;
-    }
+    }*/
 
 
     //get one book record
@@ -89,6 +89,39 @@ public class BookController {
 
         bookService.delete(id);
 
+
+    }
+
+/*
+    @RequestMapping(value="/books/", method=RequestMethod.POST)
+    public List<Book> findByAuthorAndStatus(@RequestParam String author, @RequestParam int status){
+
+
+
+        return bookService.findByAuthorAndStatus(author, status);
+
+
+    }
+*/
+
+ /*   @RequestMapping(value="/books/", method=RequestMethod.POST)
+    public List<Book> findByAuthorAndStatus(@RequestParam int len){
+
+        return bookService.findByAuthorAndStatus(len);
+
+    }*/
+
+    @RequestMapping(value="/books/", method=RequestMethod.POST)
+    public List<Book> findByAuthorAndStatus2(@RequestParam int len){
+
+        return bookService.findByAuthorAndStatus2(len);
+
+    }
+
+    @RequestMapping(value="/books/update", method=RequestMethod.POST)
+    public int updateABook(@RequestParam String author, @RequestParam int status){
+
+        return bookService.updateByJPQL(author, status);
 
     }
 }

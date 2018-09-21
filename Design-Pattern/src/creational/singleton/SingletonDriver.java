@@ -1,4 +1,4 @@
-package singleton.pattern;
+package creational.singleton;
 
 public class SingletonDriver {
 
